@@ -3,7 +3,9 @@ from typing import List
 
 class AIService:
     def __init__(self):
-        self.api_key = os.getenv("OPENAI_API_KEY", "dummy_key")
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        if not self.api_key:
+            raise ValueError("OPENAI_API_KEY not found in environment variables.")
 
     async def generate_financial_report(self, symbols: List[str], timeframe: str, focus_area: str):
         # This is a placeholder for the real LLM logic
